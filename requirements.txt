@@ -1,0 +1,6 @@
+Django==2.2
+en-core-web-sm==2.1.0
+nltk==3.2.5
+Pattern==3.6
+spacy==2.1.1
+textacy==0.6.2

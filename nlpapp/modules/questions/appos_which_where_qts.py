@@ -6,11 +6,12 @@ from nltk.tag.stanford import CoreNLPPOSTagger
 from .Questions import Questions
 nlp = spacy.load('en_core_web_sm')
 
+
 class WhichWhere(Questions):
     def modify(self):
         url = "http://localhost:9000/tregex"
-        request_params = {"pattern":  " SBAR|VP|NP=app $, /,/ "  }
-        #text = "Mexico City, the biggest city in the world, has many interesting archaeological sites."
+        request_params = {"pattern": " SBAR|VP|NP=app $, /,/ "}
+        # text = "Mexico City, the biggest city in the world, has many interesting archaeological sites."
         text = self.text
         # print(text)
         r = requests.post(url, data=text, params=request_params)
@@ -19,40 +20,39 @@ class WhichWhere(Questions):
         tree = nltk.Tree.fromstring(text1, read_leaf=lambda x: x.split("/")[0])
         line = tree.leaves()
 
-        appos=''
-        begin_text=''
+        appos = ''
+        begin_text = ''
         for tag in line:
             appos = appos + tag+' '
 
-        text = text.replace(',','')
+        text = text.replace(',', '')
         result = text.index(appos)
-        text = text.replace(appos,'')
+        text = text.replace(appos, '')
         for x in range(0,result):
             begin_text = begin_text + text[x]
-
 
         doc = nlp(begin_text)
         for ent in doc.ents:
             sub_ent = ent.label_
         if sub_ent == 'GPE' or sub_ent == 'LOC':
-            text = text.replace(begin_text,'')
+            text = text.replace(begin_text, '')
         text1 = CoreNLPPOSTagger(url='http://localhost:9000').tag(text.split())
 
         for tagg in text1:
-            #line = 'She ate the fruits.'	
-            if tagg[1]== "VBD" :
+            # line = 'She ate the fruits.'
+            if tagg[1] == "VBD":
                 tense = "was"
 
-            #line = 'We eat the fruits.'
-            if tagg[1]=="VBP" :
+            # line = 'We eat the fruits.'
+            if tagg[1] == "VBP":
                 tense = "is"
-            
-            #line = 'She eats the fruits.'
-            if tagg[1]=="VBZ":
+
+            # line = 'She eats the fruits.'
+            if tagg[1] == "VBZ":
                 tense = "is"
 
         qts = "Which/Where"
-        qts = qts+' '+tense+' '+appos+'?'
+        qts = qts + ' ' + tense + ' ' + appos + '?'
         return qts
 
 

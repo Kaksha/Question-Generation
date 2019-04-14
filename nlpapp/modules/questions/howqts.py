@@ -3,10 +3,10 @@ import requests
 import json
 import nltk
 import spacy
-nlp = spacy.load('en_core_web_sm')
 from nltk.stem.wordnet import WordNetLemmatizer
 from .Questions import Questions
 
+nlp = spacy.load('en_core_web_sm')
 class How(Questions):
     def modify(self):
         url = "http://localhost:9000/tregex"

@@ -7,6 +7,7 @@ from .what_qts import What
 from .whereqts import Where
 from .yes_qts import Yes
 
+
 class QuestionInterface:
     def __init__(self):
         self.questions = {
@@ -24,7 +25,7 @@ class QuestionInterface:
 
     def __repr__(self):
         print('<<Interface object for questions>>')
-        
+
     def get_text(self, text, option):
         return self.questions[option].modify_and_get_text(text)
 
