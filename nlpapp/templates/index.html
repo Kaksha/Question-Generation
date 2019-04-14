@@ -1,0 +1,21 @@
+{% load static %}
+<html>
+    <head>
+        <link rel="stylesheet" href="{% static 'index.css' %}">
+    </head>
+    <body>
+        <div class="textbox">
+            <div class="select">
+                <select name="option" id="option" dir="rtl">
+                </select>
+            </div>
+
+            <span id="text" contenteditable>Enter a sentence...</span>
+        </div>
+        <div class="questionbox">
+            <span id="question">?</span>
+        </div>
+    </body>
+    <script src="{% static 'index.js' %}">
+    </script>
+</html>
