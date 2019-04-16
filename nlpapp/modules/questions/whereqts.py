@@ -2,7 +2,10 @@ import spacy
 import requests
 import json
 import nltk
-from .Questions import Questions
+try:
+    from .Questions import Questions
+except:
+    from Questions import Questions
 
 
 class Where(Questions):

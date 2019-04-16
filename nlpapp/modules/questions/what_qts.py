@@ -10,7 +10,10 @@ from nltk.tag.stanford import CoreNLPPOSTagger
 
 import sys
 from nltk import sent_tokenize
-from .Questions import Questions
+try:
+    from .Questions import Questions
+except:
+    from Questions import Questions
 
 def parse(string):
     """
@@ -29,6 +32,7 @@ def parse(string):
 
 
 def genQuestion(line):
+    print('yooo', line)
     """
     outputs question from the given text
     """
@@ -46,7 +50,7 @@ def genQuestion(line):
             line = TextBlob(line) # Create object of type textblob.blob.TextBlob
 
      
-
+    print('hey', line)
     question = ''
     l1 = ['NNP', 'VBG', 'VBZ', 'IN']
     l2 = ['NNP', 'VBG', 'VBZ']
@@ -109,8 +113,9 @@ def genQuestion(line):
         question = question.replace(" ’ ","'s ")
 
     # Print the genetated questions as output.
-    # if question != '':
-    #     print('\n', 'Question: ' + question )
+    print(question)
+    if question != '':
+        print('\n', 'Question: ' + question )
     return question
    
 
@@ -142,7 +147,7 @@ def main():
 
 class What(Questions):
     def modify(self):
-        return parse(self.text)
+        return genQuestion(self.text)
 
 if __name__ == "__main__":
     w = What(input())

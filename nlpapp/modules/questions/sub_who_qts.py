@@ -2,7 +2,10 @@ import requests
 import json
 import nltk
 from nltk.tag.stanford import CoreNLPNERTagger
-from .Questions import Questions
+try:
+    from .Questions import Questions
+except:
+    from Questions import Questions
 
 class SubWho(Questions):
 	def modify(self):

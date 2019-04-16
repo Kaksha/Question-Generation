@@ -4,7 +4,10 @@ import nltk
 from nltk.tag.stanford import CoreNLPPOSTagger
 from nltk.tag.stanford import CoreNLPNERTagger
 from nltk.stem.wordnet import WordNetLemmatizer
-from .Questions import Questions
+try:
+    from .Questions import Questions
+except:
+    from Questions import Questions
 
 class ObjWho(Questions):
     def modify(self):

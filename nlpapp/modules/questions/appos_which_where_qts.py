@@ -3,7 +3,10 @@ import json
 import nltk
 import spacy
 from nltk.tag.stanford import CoreNLPPOSTagger
-from .Questions import Questions
+try:
+    from .Questions import Questions
+except:
+    from Questions import Questions
 nlp = spacy.load('en_core_web_sm')
 
 

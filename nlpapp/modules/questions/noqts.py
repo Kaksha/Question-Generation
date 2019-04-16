@@ -1,7 +1,10 @@
 from pattern.en import conjugate
 import spacy
 import textacy
-from .Questions import Questions
+try:
+    from .Questions import Questions
+except:
+    from Questions import Questions
 
 try:
     conjugate(verb='go', tense='part')
