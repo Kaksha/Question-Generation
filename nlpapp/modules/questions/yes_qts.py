@@ -82,7 +82,7 @@ class Yes(Questions):
 		for i in range(len(s)-1):
 			q = q + ' ' + s[i]
 		q = q + ' ?'
-		print(q)
+		print(q) 
 		return q
 
 

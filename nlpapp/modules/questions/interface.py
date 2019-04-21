@@ -11,7 +11,7 @@ from .yes_qts import Yes
 class QuestionInterface:
     def __init__(self):
         self.questions = {
-            # 'which': WhichWhere(''),
+            'which': WhichWhere(''),
             'how': How(''),
             'no': No(''),
             'obj_who': ObjWho(''),
